@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login!{% endblock %}
+
+{% block body %}
+
+
+<div class="container" style="margin-top:15%">
+    <div class="row">
+        <div class="col-4">
+            <div class="float-right" >
+                <h4>
+                    Create account
+                </h4>
+                
+                <a class="btn btn-primary" href="{{ path('register') }}" style="margin-top:5%"> Create account</a>
+            </div>
+        </div>
+        <div style="border-left:1px solid #000;"></div>
+        <div class="col-7">
+            <div class="containerz" >
+                {% if error %}
+                <h1>
+                    {{error.messageKey}}
+                </h1>
+                {% endif %}
+                <form action="{{ path('login') }}" method="POST">
+                    <fieldset>
+                        <legend><i class="fa fa-lock" aria-hidden="true"></i> Login</legend>
+                        <div class="form-group row">
+                            <label for="username" class="col-2">Username</label>
+                            <div class="col-8">
+                                <input type="text" id="username" name="_username" value="{{ last_email }}" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <label class="col-2" for="password">Contraseña</label>
+                            <div class="col-8">
+                                <input type="password" id="password" name="_password" class="form-control" />
+                            </div>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
